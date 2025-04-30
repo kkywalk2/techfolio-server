@@ -1,5 +1,6 @@
 package com.kkywalk2
 
+import com.kkywalk2.features.auth.FirebaseConfig
 import io.ktor.server.application.*
 
 fun main(args: Array<String>) {
@@ -7,6 +8,8 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
+    FirebaseConfig.initialize(this)
+    
     configureSerialization()
     configureMonitoring()
     configureSecurity()

@@ -6,4 +6,5 @@ import kotlinx.serialization.Serializable
 data class OnboardResponse(
     val id: String,
     val email: String,
+    val name: String
 )

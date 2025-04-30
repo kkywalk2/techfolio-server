@@ -33,6 +33,7 @@ dependencies {
     implementation("org.slf4j:slf4j-api:2.0.17")
     implementation("io.ktor:ktor-server-config-yaml")
     implementation("org.litote.kmongo:kmongo-coroutine:4.11.0")
+    implementation("com.google.firebase:firebase-admin:9.4.3")
     testImplementation("io.ktor:ktor-server-test-host")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }

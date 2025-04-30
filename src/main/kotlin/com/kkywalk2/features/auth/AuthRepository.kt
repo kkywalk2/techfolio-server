@@ -8,6 +8,7 @@ data class User(
     @BsonId
     val id: String,
     val email: String,
+    val name: String,
     val createdAt: Long
 )
 
