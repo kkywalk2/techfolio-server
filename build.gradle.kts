@@ -34,6 +34,8 @@ dependencies {
     implementation("io.ktor:ktor-server-config-yaml")
     implementation("org.litote.kmongo:kmongo-coroutine:4.11.0")
     implementation("com.google.firebase:firebase-admin:9.4.3")
+    implementation("io.arrow-kt:arrow-core:1.2.1")
+    implementation("io.arrow-kt:arrow-optics:1.2.1")
     testImplementation("io.ktor:ktor-server-test-host")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
