@@ -3,6 +3,7 @@ package com.kkywalk2.features.auth
 import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensure
+import arrow.core.raise.ensureNotNull
 import com.google.firebase.auth.FirebaseAuthException
 import com.kkywalk2.common.TechfolioError
 import com.kkywalk2.common.UnauthorizedError
@@ -33,6 +34,19 @@ class AuthService(private val authRepository: AuthRepository) {
             OnboardResponse(user.id, user.email, user.name)
         } catch (e: FirebaseAuthException) {
             raise(UnauthorizedError())
+        }
+    }
+
+    suspend fun authenticate(
+        idToken: String,
+    ): Either<TechfolioError, User> = either {
+        val decodedToken = FirebaseConfig.getAuth().verifyIdToken(idToken)
+        val uid = decodedToken.uid
+
+        val user = authRepository.findUserById(uid)
+
+        ensureNotNull(user) {
+            UnauthorizedError()
         }
     }
 }
