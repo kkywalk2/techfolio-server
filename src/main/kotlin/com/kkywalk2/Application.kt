@@ -1,6 +1,6 @@
 package com.kkywalk2
 
-import com.kkywalk2.features.auth.FirebaseConfig
+import com.kkywalk2.features.user.FirebaseConfig
 import io.ktor.server.application.*
 
 fun main(args: Array<String>) {

@@ -1,4 +1,4 @@
-package com.kkywalk2.features.auth
+package com.kkywalk2.features.user
 
 import com.google.auth.oauth2.GoogleCredentials
 import com.google.firebase.FirebaseApp
@@ -25,4 +25,4 @@ object FirebaseConfig {
     fun getAuth(): FirebaseAuth {
         return firebaseAuth ?: throw IllegalStateException("Firebase Auth not initialized")
     }
-} 
+}

@@ -1,9 +1,9 @@
-package com.kkywalk2.features.auth
+package com.kkywalk2.features.user
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class OnboardRequest(
+data class CreateUserRequest(
     val idToken: String,
     val email: String,
     val name: String,

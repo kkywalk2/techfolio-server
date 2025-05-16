@@ -1,4 +1,4 @@
-package com.kkywalk2.features.auth
+package com.kkywalk2.features.user
 
 import com.kkywalk2.db.MongoDB
 import org.bson.codecs.pojo.annotations.BsonId
@@ -12,7 +12,7 @@ data class User(
     val createdAt: Long
 )
 
-class AuthRepository {
+class UserRepository {
     private val collection = MongoDB.database.getCollection<User>()
 
     suspend fun saveUser(user: User) {

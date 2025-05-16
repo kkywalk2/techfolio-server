@@ -1,4 +1,4 @@
-package com.kkywalk2.features.auth
+package com.kkywalk2.features.user
 
 import arrow.core.Either
 import arrow.core.raise.either
@@ -9,12 +9,12 @@ import com.kkywalk2.common.TechfolioError
 import com.kkywalk2.common.UnauthorizedError
 import com.kkywalk2.common.ValidationError
 
-class AuthService(private val authRepository: AuthRepository) {
+class UserService(private val userRepository: UserRepository) {
 
-    suspend fun onboard(
-        request: OnboardRequest,
+    suspend fun create(
+        request: CreateUserRequest,
         now: Long,
-    ): Either<TechfolioError, OnboardResponse> = either {
+    ): Either<TechfolioError, CreateUserResponse> = either {
         try {
             val decodedToken = FirebaseConfig.getAuth().verifyIdToken(request.idToken)
             val uid = decodedToken.uid
@@ -30,8 +30,8 @@ class AuthService(private val authRepository: AuthRepository) {
                 createdAt = now,
             )
 
-            authRepository.saveUser(user)
-            OnboardResponse(user.id, user.email, user.name)
+            userRepository.saveUser(user)
+            CreateUserResponse(user.id, user.email, user.name)
         } catch (e: FirebaseAuthException) {
             raise(UnauthorizedError())
         }
@@ -43,7 +43,7 @@ class AuthService(private val authRepository: AuthRepository) {
         val decodedToken = FirebaseConfig.getAuth().verifyIdToken(idToken)
         val uid = decodedToken.uid
 
-        val user = authRepository.findUserById(uid)
+        val user = userRepository.findUserById(uid)
 
         ensureNotNull(user) {
             UnauthorizedError()
